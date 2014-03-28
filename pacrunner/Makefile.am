@@ -135,7 +135,6 @@ endif #UNIT
 
 AM_CFLAGS = @GLIB_CFLAGS@ @PTHREAD_LIBS@ @DBUS_CFLAGS@ \
 				$(builtin_cflags) \
-				-DPACRUNNER_PLUGIN_BUILTIN \
 				-DPLUGINDIR=\""$(plugindir)"\"
 
 AM_CXXFLAGS = $(AM_CFLAGS)

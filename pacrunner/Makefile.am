@@ -19,6 +19,9 @@ builtin_sources =
 builtin_cflags =
 builtin_libadd =
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA =
+
 if CURL
 builtin_modules += curl
 builtin_sources += plugins/curl.c
@@ -48,6 +51,13 @@ src_pacrunner_SOURCES = $(gdbus_sources) $(builtin_sources) \
 			src/client.c src/manager.c src/proxy.c \
 			src/manual.c src/js.h src/js.c src/javascript.h
 
+if PLUGINDEVEL
+pluginincludedir = $(includedir)/pacrunner
+plugininclude_HEADERS = src/js.h src/plugin.h
+
+pkgconfig_DATA += src/pacrunner-1.0.pc
+endif
+
 src_pacrunner_LDADD = $(builtin_libadd) @GLIB_LIBS@ @PTHREAD_LIBS@ \
 							@DBUS_LIBS@ -ldl
 
@@ -74,9 +84,7 @@ libproxy_libproxy_la_LIBADD = @DBUS_LIBS@
 libproxy_libproxy_la_LDFLAGS = -version-info 1:0:0
 
 if DATAFILES
-pkgconfigdir = $(libdir)/pkgconfig
-
-pkgconfig_DATA = libproxy/libproxy-1.0.pc
+pkgconfig_DATA += libproxy/libproxy-1.0.pc
 endif
 
 bin_PROGRAMS = tools/proxy tools/manual-proxy-test

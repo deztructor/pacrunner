@@ -148,4 +148,8 @@ AC_ARG_ENABLE(datafiles, AC_HELP_STRING([--disable-datafiles],
 					[enable_datafiles=${enableval}])
 AM_CONDITIONAL(DATAFILES, test "${enable_datafiles}" != "no")
 
-AC_OUTPUT(Makefile src/pacrunner.service libproxy/libproxy-1.0.pc)
+AC_ARG_ENABLE(plugindevel, AC_HELP_STRING([--enable-plugindevel],
+	[enable plugin development]), [enable_plugindevel=${enableval}])
+AM_CONDITIONAL(PLUGINDEVEL, test "${enable_plugindevel}" = "yes")
+
+AC_OUTPUT(Makefile src/pacrunner.service libproxy/libproxy-1.0.pc src/pacrunner-1.0.pc)

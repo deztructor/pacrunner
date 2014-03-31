@@ -1,0 +1,8 @@
+prefix=@prefix@
+includedir=@includedir@/pacrunner
+
+Name: pacrunner-1.0
+Description: Pacrunner plugin headers
+Version: @VERSION@
+Libs: 
+Cflags: -I${includedir}
